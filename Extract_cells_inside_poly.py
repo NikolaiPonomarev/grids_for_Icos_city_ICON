@@ -37,7 +37,7 @@ poly = Polygon(coords)
 print('Read polyshape: ', np.shape(coords))
 
 #Read nc grid file
-fileN='/users/nponomar/grids/icon_Zurich_1_DOM02.nc'
+fileN='/users/nponomar/icon-art/icon/grids/icon_Zurich_3_DOM04.nc'
 dataset = Dataset(fileN, maskandscale=True, mmap=False)
 dataset = xr.load_dataset(fileN)
 
@@ -87,7 +87,7 @@ inds_edges = np.array([[x for x in y] for y in dataset.edge_of_cell[:, indcs_pol
 dataset_cells_verts = dataset_cells.isel(vertex=inds_verticies)
 dataset_cells_verts_edges = dataset_cells_verts.isel(edge=inds_edges)
 
-dataset_cells_verts_edges.to_netcdf("/users/nponomar/grids/icon_Zurich_1_DOM02_extracted_vars.nc" )
+dataset_cells_verts_edges.to_netcdf("/users/nponomar/icon-art/icon/grids/icon_Zurich_3_DOM04_extracted.nc" )
 
 #Plot the grid and city's shape file
 clon_poly = clon[indcs_poly]
@@ -100,7 +100,7 @@ plt.savefig('check.png')
 
 
 #Read newly created nc grid file
-fileN='/users/nponomar/grids/icon_Zurich_1_DOM02_extracted_vars.nc'
+fileN='/users/nponomar/icon-art/icon/grids/icon_Zurich_3_DOM04_extracted.nc'
 dataset = Dataset(fileN, maskandscale=True, mmap=False)
 dataset = xr.load_dataset(fileN)
 print(dataset)
